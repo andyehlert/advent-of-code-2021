@@ -4,9 +4,6 @@ import utils.FileReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -16,15 +13,12 @@ public class SonarSweep
 
    public static void main(String[] args) throws IOException
    {
-      countDepthIncreases(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME));
-      countSlidingWindowSumIncreases(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME));
+      countDepthIncreases(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME));
+      countSlidingWindowSumIncreases(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME));
    }
 
-   private static void countDepthIncreases(InputStream is) throws IOException
+   private static void countDepthIncreases(BufferedReader reader) throws IOException
    {
-      InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
-      BufferedReader reader = new BufferedReader(streamReader);
-
       String line;
       int previousDepth = 0;
       int numberOfIncreases = 0;
@@ -50,11 +44,8 @@ public class SonarSweep
       System.out.println("Part 1 - Number of Depth Increases: " + numberOfIncreases);
    }
 
-   private static void countSlidingWindowSumIncreases(InputStream is) throws IOException
+   private static void countSlidingWindowSumIncreases(BufferedReader reader) throws IOException
    {
-      InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
-      BufferedReader reader = new BufferedReader(streamReader);
-
       String line;
       Queue<Integer> currentWindow = new LinkedList<>();
 

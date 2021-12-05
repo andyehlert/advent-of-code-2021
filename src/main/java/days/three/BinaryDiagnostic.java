@@ -4,9 +4,6 @@ import utils.FileReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +13,7 @@ public class BinaryDiagnostic
 
    public static void main(String[] args) throws IOException
    {
-      List<String> numbers = getNumbers(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME));
+      List<String> numbers = getNumbers(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME));
       multiplyGammaRateAndEpsilonRate(numbers);
       multiplyOxygenGeneratorRatingByCO2ScrubberRating(numbers);
    }
@@ -56,7 +53,7 @@ public class BinaryDiagnostic
 
    private static String findOxygenGeneratorRating() throws IOException
    {
-      List<String> numbers = getNumbers(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME));
+      List<String> numbers = getNumbers(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME));
       int numberOfBits = numbers.get(0).length();
       int bitIndex = 0;
 
@@ -78,7 +75,7 @@ public class BinaryDiagnostic
 
    private static String findCO2ScrubberRating() throws IOException
    {
-      List<String> numbers = getNumbers(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME));
+      List<String> numbers = getNumbers(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME));
       int numberOfBits = numbers.get(0).length();
       int bitIndex = 0;
 
@@ -120,10 +117,8 @@ public class BinaryDiagnostic
       return zeroCount > oneCount ? '0' : '1';
    }
 
-   private static List<String> getNumbers(InputStream is) throws IOException
+   private static List<String> getNumbers(BufferedReader reader) throws IOException
    {
-      InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
-      BufferedReader reader = new BufferedReader(streamReader);
       List<String> numbers = new ArrayList<>();
       String line;
       while ((line = reader.readLine()) != null)
@@ -132,5 +127,4 @@ public class BinaryDiagnostic
       }
       return numbers;
    }
-
 }

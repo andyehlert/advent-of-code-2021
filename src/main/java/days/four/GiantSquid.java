@@ -5,9 +5,6 @@ import utils.FileReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,15 +17,12 @@ public class GiantSquid
 
    public static void main(String[] args) throws IOException
    {
-      firstWinningBingoCardScore(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME));
-      lastWinningBingoCardScore(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME));
+      firstWinningBingoCardScore(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME));
+      lastWinningBingoCardScore(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME));
    }
 
-   private static void firstWinningBingoCardScore(InputStream is) throws IOException
+   private static void firstWinningBingoCardScore(BufferedReader reader) throws IOException
    {
-      InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
-      BufferedReader reader = new BufferedReader(streamReader);
-
       List<String> drawingNumbers = readDrawingNumbers(reader);
       List<List<List<String>>> boards = readBoards(reader);
 
@@ -55,11 +49,8 @@ public class GiantSquid
       System.out.println("Part 1 - First Winning Board Score: " + winningScore);
    }
 
-   private static void lastWinningBingoCardScore(InputStream is) throws IOException
+   private static void lastWinningBingoCardScore(BufferedReader reader) throws IOException
    {
-      InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
-      BufferedReader reader = new BufferedReader(streamReader);
-
       List<String> drawingNumbers = readDrawingNumbers(reader);
       List<List<List<String>>> boards = readBoards(reader);
 

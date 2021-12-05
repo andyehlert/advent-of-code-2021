@@ -6,9 +6,6 @@ import utils.FileReader;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -22,11 +19,11 @@ public class HydrothermalVenture
    public static void main(String[] args) throws IOException
    {
       Map<Point, Integer> coordinateMapWithoutDiagonal =
-            createCoordinateMap(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME), false);
+            createCoordinateMap(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME), false);
       System.out.println("Part 1 - Points to Avoid: " + calculateTotalPointsToAvoid(coordinateMapWithoutDiagonal));
 
       Map<Point, Integer> coordinateMapWithDiagonal =
-            createCoordinateMap(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME), true);
+            createCoordinateMap(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME), true);
       System.out.println("Part 2 - Points to Avoid: " + calculateTotalPointsToAvoid(coordinateMapWithDiagonal));
    }
 
@@ -37,10 +34,8 @@ public class HydrothermalVenture
             .count();
    }
 
-   private static Map<Point, Integer> createCoordinateMap(InputStream inputStream, boolean includeDiagonal) throws IOException
+   private static Map<Point, Integer> createCoordinateMap(BufferedReader reader, boolean includeDiagonal) throws IOException
    {
-      InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-      BufferedReader reader = new BufferedReader(streamReader);
       Map<Point, Integer> coordinateMap = new HashMap<>();
 
       String line;

@@ -5,9 +5,6 @@ import utils.FileReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 
 public class Dive
 {
@@ -15,15 +12,12 @@ public class Dive
 
    public static void main(String[] args) throws IOException
    {
-      multiplyPositionByDepth(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME));
-      multiplyPositionByDepthWithAim(FileReader.getFileFromResourceAsStream(INPUT_FILE_NAME));
+      multiplyPositionByDepth(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME));
+      multiplyPositionByDepthWithAim(FileReader.getFileFromResourceAsBufferedReader(INPUT_FILE_NAME));
    }
 
-   public static void multiplyPositionByDepth(InputStream is) throws IOException
+   public static void multiplyPositionByDepth(BufferedReader reader) throws IOException
    {
-      InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
-      BufferedReader reader = new BufferedReader(streamReader);
-
       String line;
       int horizontalPosition = 0;
       int verticalPosition = 0;
@@ -50,11 +44,8 @@ public class Dive
       System.out.println("Part 1 - Product of Horizontal Position and Depth: " + verticalPosition * horizontalPosition);
    }
 
-   public static void multiplyPositionByDepthWithAim(InputStream is) throws IOException
+   public static void multiplyPositionByDepthWithAim(BufferedReader reader) throws IOException
    {
-      InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
-      BufferedReader reader = new BufferedReader(streamReader);
-
       String line;
       int horizontalPosition = 0;
       int verticalPosition = 0;
