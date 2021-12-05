@@ -1,2 +1,5 @@
 # JetBrains project files
 .idea/
+
+target/
+src/main/resources/test_file.txt
